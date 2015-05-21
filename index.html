@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shared Worker Tester</title>
+	</head>
+	<body>
+		<h1 id="title"></h1>
+		<hr>
+		<input type="text" name="chatentry" id="chatEntry" />
+	
+		<div id="messages"></div>
+
+		<script>
+			overwolf.windows.obtainDeclaredWindow("index_1", function(result) {
+				if (!(result && result.status === "success")) {
+					console.error("Couldn't get second window");
+					return;
+				};
+				overwolf.windows.restore(result.window.id, function(result) {
+					console.log(result);
+				});
+			});
+		</script>
+		
+		<script type="text/javascript" src="app.js"></script>
+	</body>
+</html>

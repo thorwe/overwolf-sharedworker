@@ -17,3 +17,9 @@ el.addEventListener("keydown", function(evt) {
 	};
 
 }, false);
+
+// dunno of a more appropriate way yet
+addEventListener( 'beforeunload', function()
+{
+    worker.port.postMessage( 'closing' );
+});

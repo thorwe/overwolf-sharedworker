@@ -1,9 +1,16 @@
 var ports = [];
 
 listenForMessage = function (event, port) {
+	var data = event.data;
+	if (data === "closing") {
+		var index = ports.indexOf( port );
+		ports.splice(index, 1 );
+		data = "" +index + " left";
+	}
+	
 	var portsLength = ports.length;
 	for (var i = 0; i < portsLength; i++) {
-		ports[i].postMessage(event.data);
+		ports[i].postMessage(data);
 	}
 }
 
